@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayPal - Il mio conto</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #f5f7fa;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .topbar {
+      background: #003087;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar h1 {
+      font-size: 22px;
+      margin: 0;
+    }
+    .container {
+      max-width: 480px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+    .saldo {
+      font-size: 36px;
+      font-weight: bold;
+      color: #003087;
+      margin: 10px 0;
+    }
+    .btn {
+      background: #0070ba;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #005ea6;
+    }
+    .btn-secondary {
+      background: #fff;
+      color: #0070ba;
+      border: 2px solid #0070ba;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .transazione {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .transazione:last-child {
+      border-bottom: none;
+    }
+    .negativo { color: #d32f2f; }
+    .positivo { color: #2e7d32; }
+    .hidden { display: none; }
+    .errore {
+      color: #d32f2f;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>PayPal</h1>
+    <span id="nome-utente">Ciao!</span>
+  </div>
+
+  <div class="container">
+    <!-- SALDO -->
+    <div class="card">
+      <div style="color:#666; font-size:14px;">Saldo disponibile</div>
+      <div class="saldo" id="saldo">€ 1.250,00</div>
+      <button class="btn" onclick="mostraInvia()">Invia denaro</button>
+      <button class="btn btn-secondary" onclick="aggiungiSoldi()" style="margin-top:10px;">
+        + Aggiungi soldi (finti)
+      </button>
+    </div>
+
+    <!-- FORM INVIA -->
+    <div class="card hidden" id="form-invia">
+      <h3 style="margin-top:0;">Invia denaro</h3>
+      <label>Email del destinatario</label>
+      <input type="email" id="email" placeholder="esempio@email.com" />
+      
+      <label>Importo (€)</label>
+      <input type="number" id="importo" placeholder="0,00" step="0.01" min="0.01" />
+      
+      <div class="errore hidden" id="errore"></div>
+      
+      <button class="btn" onclick="inviaDenaro()">Invia ora</button>
+      <button class="btn btn-secondary" onclick="nascondiInvia()" style="margin-top:10px;">Annulla</button>
+    </div>
+
+    <!-- CRONOLOGIA -->
+    <div class="card">
+      <h3 style="margin-top:0;">Attività recente</h3>
+      <div id="cronologia">
+        <!-- le transazioni verranno inserite qui -->
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
